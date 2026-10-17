@@ -68,11 +68,11 @@ signupForm.addEventListener("submit", function (event) {
     })
     .catch(function (error) {
       console.log("Signup error:", error.message);
+      alert(error.message);
     });
 
   console.log(formData);
   console.log("Form submitted successfully");
-  signupForm.reset();
 });
 
 studentName.addEventListener("input", function (e) {
