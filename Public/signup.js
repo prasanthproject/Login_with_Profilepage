@@ -15,11 +15,14 @@ const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
 const confirmPasswordError = document.getElementById("confirmPasswordError");
 const signupForm = document.getElementById("signupForm");
+const signupMessage = document.getElementById("signupMessage");
 
 let isValid;
 
 signupForm.addEventListener("submit", function (event) {
   event.preventDefault();
+  signupMessage.textContent = "";
+  signupMessage.classList.add("hidden");
   isValid = true;
   studentName1();
   studentAge1();
@@ -65,10 +68,15 @@ signupForm.addEventListener("submit", function (event) {
     .then(function (data) {
       console.log(data.message);
       signupForm.reset();
+      signupMessage.textContent = data.message;
+      signupMessage.className =
+        "text-sm text-center text-green-600 md:col-span-2";
     })
     .catch(function (error) {
       console.log("Signup error:", error.message);
-      alert(error.message);
+      signupMessage.textContent = error.message;
+      signupMessage.className =
+        "text-sm text-center text-red-600 md:col-span-2";
     });
 
   console.log(formData);
